@@ -5,24 +5,16 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Util {
+
     private static String URL = "jdbc:mysql://localhost:3306/database";
     private static String USERNAME = "root";
     private static String PASSWORD = "root";
-    private static Connection connection = null;
 
     public Util() {
     }
 
-    public static Connection getConnection() {
-        if (connection == null) {
-            try {
-                return connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            } catch (SQLException var1) {
-                var1.printStackTrace();
-            }
-        }
-
-        return connection;
+    public static Connection getConnection() throws SQLException{
+        return DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
 
     public static void setURL(String URL) {
@@ -35,5 +27,17 @@ public class Util {
 
     public static void setPASSWORD(String PASSWORD) {
         Util.PASSWORD = PASSWORD;
+    }
+
+    public static String getURL() {
+        return URL;
+    }
+
+    public static String getUSERNAME() {
+        return USERNAME;
+    }
+
+    public static String getPASSWORD() {
+        return PASSWORD;
     }
 }
